@@ -1,27 +1,64 @@
+import time
 import pyautogui
+import pyautogui as hid
+from win32api import GetSystemMetrics
 
 class Interactor:
+
 	def __init__(self):
-		pass
+		self.last_runtime = 0
+		self.default_sleep_time = 2
+		self.screensize_x = GetSystemMetrics(0)
+		self.screensize_y = GetSystemMetrics(1)
+		self.mouse_cursor_last_position = pyautogui.position()
+		self.is_first_click = 0
 
 	def left_click(self):
-		pyautogui.click(button='left')
+		current_time = time.time()
+		if current_time - self.last_runtime > self.default_sleep_time:
+			self.last_runtime = current_time
+			hid.click(button='left')
 
 	def right_click(self):
-		pyautogui.click(button='right')
+		current_time = time.time()
+		if current_time - self.last_runtime > self.default_sleep_time:
+			self.last_runtime = current_time
+			hid.click(button='right')
 
-	def scroll(self, is_up: bool = True):
+	def scroll(self, is_up: bool = True, speed: float = 0.1):
 		if is_up:
-			pyautogui.scroll(10)
+			hid.scroll(speed)
 		elif  is_up is not True :
-			pyautogui.scroll(-10)
-		else:
-			print("'is_up' is required value for mouse scroll.")
+			speed = int((-1)*speed)
+			hid.scroll(speed)
 
-	def move(self, x_offset,y_offset):
-		pyautogui.moveTo(x_offset, y_offset)
-		return
+	def move(self, landmark:list):
+		hid.moveTo(landmark[1], landmark[2])
 
 	def write_text(self, text):
-		pyautogui.write(text)
+		hid.write(text)
+
+	def add_new_tab(self):
+		current_time = time.time()
+		if current_time - self.last_runtime > self.default_sleep_time:
+			hid.hotkey('ctrl','t')
+			self.last_runtime = current_time
+
+	def close_tab(self):
+		current_time = time.time()
+		if current_time - self.last_runtime > self.default_sleep_time:
+			hid.hotkey('ctrl','w')
+			self.last_runtime = current_time
+
+	def change_tab(self):
+		current_time = time.time()
+		if current_time - self.last_runtime > self.default_sleep_time:
+			hid.hotkey('ctrl','tab')
+			self.last_runtime = current_time
+
+	def voice_listen(self):
+		current_time = time.time()
+		if current_time - self.last_runtime > self.default_sleep_time:
+			self.last_runtime = current_time
+			return "voice listened"
 

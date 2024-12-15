@@ -1,8 +1,7 @@
 import cv2
 
-from detectHand import handDetector
+from detect_hand import handDetector
 from gesture_detector import GestureDetector
-from interactor import Interactor
 
 def main():
 	cap = cv2.VideoCapture(0)
@@ -17,10 +16,11 @@ def main():
 			continue
 
 		img = detector.findHands(image)
-		landmarkList = detector.get_coordinates(img)
-		if landmarkList:
+		landmark_list = detector.get_coordinates(img)
 
-			gesture_detector.gesture_detect(landmarkList)
+		if landmark_list:
+			gesture_detector.landmark_list = landmark_list
+			gesture_detector.gesture_detect()
 
 		cv2.imshow("Image", img)
 		if cv2.waitKey(5) & 0xFF == 27:
