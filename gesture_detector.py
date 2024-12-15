@@ -1,8 +1,6 @@
 import math
 import time
 
-import numpy as np
-from fontTools.merge.util import current_time
 
 import interactor
 
@@ -23,7 +21,7 @@ class GestureDetector:
 		distance = math.sqrt((point1[1] - point2[1]) ** 2 + (point1[2] - point2[2]) ** 2)
 		return distance
 
-	def landmarks_distances_from(self, from_landmark:int, ):
+	def landmarks_distances_from(self, from_landmark:int ):
 		distances = []
 		for landmark in self.landmark_list:
 			if landmark != self.landmark_list[from_landmark]:
@@ -54,12 +52,6 @@ class GestureDetector:
 				return "Up"
 			else:
 				return "Down"
-
-	def record_gesture(self, distance_list:list, gesture_name:str ):
-		gestures = dict()
-		if distance_list:
-			gestures[gesture_name] = distance_list
-			self.print_distances(0, distance_list)
 
 	def is_finger_open(self, finger: int):
 		#this function is for right hand
@@ -113,8 +105,8 @@ class GestureDetector:
 						finger_open = True
 		return finger_open
 
-	def print_distances(self, from_landmark: int,  distances_list:list ):
 
+	def print_distances(self, from_landmark: int,  distances_list:list ):
 		print(f"Distance list from landmark {from_landmark}")
 		for id, distance in enumerate(distances_list):
 			print(f"Distance {id}: {distance} -> {int(distance/350)*'#'}")
@@ -180,10 +172,10 @@ class GestureDetector:
 					print("tab closed")
 
 		elif fingers == [0,1,1,1,1]:
-			print("voice")
+			# voice.voice_to_text()
 			# text = self.interactor.voice_listen()
 			# self.interactor.write_text(text)
-
+			pass
 		#mouse move gesture check
 		elif fingers == [1,1,0,0,0]:
 			self.interactor.move(self.landmark_list[8])

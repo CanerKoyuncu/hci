@@ -3,6 +3,9 @@ import pyautogui
 import pyautogui as hid
 from win32api import GetSystemMetrics
 
+import voice
+
+
 class Interactor:
 
 	def __init__(self):
@@ -60,5 +63,5 @@ class Interactor:
 		current_time = time.time()
 		if current_time - self.last_runtime > self.default_sleep_time:
 			self.last_runtime = current_time
-			return "voice listened"
-
+			text = voice.voice_to_text()
+			self.write_text(text)
