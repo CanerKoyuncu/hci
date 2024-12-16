@@ -172,10 +172,8 @@ class GestureDetector:
 					print("tab closed")
 
 		elif fingers == [0,1,1,1,1]:
-			# voice.voice_to_text()
-			# text = self.interactor.voice_listen()
-			# self.interactor.write_text(text)
-			pass
+			self.interactor.voice_listen()
+
 		#mouse move gesture check
 		elif fingers == [1,1,0,0,0]:
 			self.interactor.move(self.landmark_list[8])

@@ -61,7 +61,7 @@ class Interactor:
 
 	def voice_listen(self):
 		current_time = time.time()
-		if current_time - self.last_runtime > self.default_sleep_time:
+		if current_time - self.last_runtime > 5:
 			self.last_runtime = current_time
 			text = voice.voice_to_text()
 			self.write_text(text)

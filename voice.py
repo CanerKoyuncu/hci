@@ -11,8 +11,10 @@ def voice_to_text():
 			print("Konuşma tamamlandı, metne dönüştürülüyor...")
 			metin = recognizer.recognize_google(ses, language="tr-TR")
 			print(f"Tespit edilen metin: {metin}")
-
-			pyautogui.typewrite(metin)
+			if metin:
+				return metin
+			else:
+				return ""
 		except sr.WaitTimeoutError:
 			print("2 saniye boyunca konuşma algılanmadı, işlem sonlandırılıyor.")
 		except sr.UnknownValueError:
