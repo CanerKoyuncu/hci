@@ -4,7 +4,7 @@ from win32api import GetSystemMetrics
 
 class handDetector():
 
-	def __init__(self, mode = False, maxHands = 2, complexity = 0, detectionConf = 0.5, trackConf = 0.5):
+	def __init__(self, mode = False, maxHands = 1, complexity = 0, detectionConf = 0.5, trackConf = 0.5):
 		self.mode = mode
 		self.maxHands = maxHands
 		self.detectionCon = detectionConf

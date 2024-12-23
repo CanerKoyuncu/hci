@@ -1,7 +1,7 @@
 import cv2
 
-from detect_hand import handDetector
-from gesture_detector import GestureDetector
+from utils.detect_hand import handDetector
+from utils.gesture_detector import GestureDetector
 
 def main():
 	cap = cv2.VideoCapture(0)
@@ -9,6 +9,7 @@ def main():
 	gesture_detector = GestureDetector()
 
 	while cap.isOpened():
+
 		success, image = cap.read()
 		if not success:
 			print("Cam is not get image data.")
@@ -24,7 +25,9 @@ def main():
 
 		cv2.imshow("Image", img)
 		if cv2.waitKey(5) & 0xFF == 27:
+			cap.release()
 			break
+
 	cap.release()
 
 if __name__ == '__main__':

@@ -1,8 +1,8 @@
 import math
 import time
 
+from utils import interactor
 
-import interactor
 
 class GestureDetector:
 	def __init__(self):

@@ -3,7 +3,7 @@ import pyautogui
 import pyautogui as hid
 from win32api import GetSystemMetrics
 
-import voice
+from utils import voice
 
 
 class Interactor:
@@ -59,9 +59,9 @@ class Interactor:
 			hid.hotkey('ctrl','tab')
 			self.last_runtime = current_time
 
-	def voice_listen(self):
+	async def voice_listen(self):
 		current_time = time.time()
 		if current_time - self.last_runtime > 5:
 			self.last_runtime = current_time
-			text = voice.voice_to_text()
+			text = await voice.voice_to_text()
 			self.write_text(text)
