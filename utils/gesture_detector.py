@@ -59,50 +59,52 @@ class GestureDetector:
 		orientation = self.orientation(0,12)
 
 		if self.landmark_list:
-			# [[3,4],[7,8],[11,12],[15,16],[19,20]]
 			point1 = self.tips_dips[finger][0]
 			point2 = self.tips_dips[finger][1]
-			if orientation == "Up":
-				if finger == 0:
+			if orientation == "Up": # yukarı bakıyor
+				if finger == 0: # baş parmak
 					if self.landmark_list[5][1] > self.landmark_list[17][1]:
+						# elin arkası
+						# [[3,4],[7,8],[11,12],[15,16],[19,20]]
 						if self.landmark_list[point1][1] < self.landmark_list[point2][1]:
 							finger_open = True
 					else:
+						#elin önü
 						if self.landmark_list[point1][1] > self.landmark_list[point2][1]:
 							finger_open = True
-				elif self.landmark_list[point1][2] > self.landmark_list[point2][2]:
+				elif self.landmark_list[point1][2] > self.landmark_list[point2][2]: #diğer parmaklar
 
 					finger_open = True
-			elif orientation == "Down":
-				if finger == 0:
-					if self.landmark_list[5][1] > self.landmark_list[17][1]:
+			elif orientation == "Down":# aşağı bakıyor
+				if finger == 0: #baş parmak
+					if self.landmark_list[5][1] > self.landmark_list[17][1]: # elin arkası
 						if self.landmark_list[point1][1] < self.landmark_list[point2][1]:
 							finger_open = True
-					else:
+					else: #elin önü
 						if self.landmark_list[point1][1] > self.landmark_list[point2][1]:
 							finger_open = True
 				elif self.landmark_list[point1][2] < self.landmark_list[point2][2]:
 					finger_open = True
 
-			elif orientation == "Left":
+			elif orientation == "Left": # el sola bakıyor
 				if finger == 0:
-					if self.landmark_list[5][2] < self.landmark_list[17][2]:
+					if self.landmark_list[5][2] < self.landmark_list[17][2]: # baş parmak yukarı
 						if self.landmark_list[point1][2] > self.landmark_list[point2][2]:
 							finger_open = True
-					else:
+					else: # baş parmak aşağı
 						if self.landmark_list[point1][2] < self.landmark_list[point2][2]:
 							finger_open = True
-				elif self.landmark_list[point1][1] > self.landmark_list[point2][1]:
+				elif self.landmark_list[point1][1] > self.landmark_list[point2][1]: # diğer parmaklar
 					finger_open = True
-			elif orientation == "Right":
-				if finger == 0:
-					if self.landmark_list[5][2] < self.landmark_list[17][2]:
+			elif orientation == "Right": # el sağa bakıyor
+				if finger == 0: # baş parmak
+					if self.landmark_list[5][2] < self.landmark_list[17][2]: # baş parmak yukarı
 						if self.landmark_list[point1][2] > self.landmark_list[point2][2]:
 							finger_open = True
-					else:
+					else: # baş parmak aşağı
 						if self.landmark_list[point1][2] < self.landmark_list[point2][2]:
 							finger_open = True
-				elif self.landmark_list[point1][1] < self.landmark_list[point2][1]:
+				elif self.landmark_list[point1][1] < self.landmark_list[point2][1]: # diğer parmaklar
 					finger_open = True
 		return finger_open
 
@@ -123,6 +125,7 @@ class GestureDetector:
 				fingers.append(1)
 			else:
 				fingers.append(0)
+
 
 		#Left click gesture check
 		if fingers == [0,1,0,0,0]:
