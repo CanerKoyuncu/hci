@@ -1,15 +1,14 @@
 import speech_recognition as sr
 import pyautogui  # type: ignore
 
-
-async def voice_to_text():
+def voice_to_text():
 	recognizer = sr.Recognizer()
 	with sr.Microphone() as source:
 		print("Konuşmayı başlatabilirsiniz (2 saniye boyunca sessiz kalırsanız işlem sonlanacak)...")
 		try:
-			ses = await recognizer.listen(source, timeout=2, phrase_time_limit=10)
+			ses = recognizer.listen(source, timeout=2, phrase_time_limit=10)
 			print("Konuşma tamamlandı, metne dönüştürülüyor...")
-			metin = await recognizer.recognize_google(ses, language="tr-TR")
+			metin = recognizer.recognize_google(ses, language="tr-TR")
 			print(f"Tespit edilen metin: {metin}")
 			if metin != None:
 				return metin

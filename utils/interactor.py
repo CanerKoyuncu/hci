@@ -59,9 +59,14 @@ class Interactor:
 			hid.hotkey('ctrl','tab')
 			self.last_runtime = current_time
 
-	async def voice_listen(self):
+	def voice_listen(self):
 		current_time = time.time()
 		if current_time - self.last_runtime > 5:
 			self.last_runtime = current_time
-			text = await voice.voice_to_text()
-			self.write_text(text)
+			text = voice.voice_to_text()
+			if text != None:
+				print(text)
+				self.write_text(text)
+			else:
+				print("else: ",text)
+

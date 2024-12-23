@@ -59,50 +59,51 @@ class GestureDetector:
 		orientation = self.orientation(0,12)
 
 		if self.landmark_list:
-			if orientation == "Up" or orientation == "Down":
-					if orientation == "Up":
-						if finger == 0:
-							if self.landmark_list[5][1] > self.landmark_list[17][1]:
-								if self.landmark_list[self.tips_dips[finger][0]][1] < self.landmark_list[self.tips_dips[finger][1]][1]:
-									finger_open = True
-							else:
-								if self.landmark_list[self.tips_dips[finger][0]][1] > self.landmark_list[self.tips_dips[finger][1]][1]:
-									finger_open = True
-
-						elif self.landmark_list[self.tips_dips[finger][0]][2] > self.landmark_list[self.tips_dips[finger][1]][2]:
+			# [[3,4],[7,8],[11,12],[15,16],[19,20]]
+			point1 = self.tips_dips[finger][0]
+			point2 = self.tips_dips[finger][1]
+			if orientation == "Up":
+				if finger == 0:
+					if self.landmark_list[5][1] > self.landmark_list[17][1]:
+						if self.landmark_list[point1][1] < self.landmark_list[point2][1]:
 							finger_open = True
 					else:
-						if finger == 0:
-							if self.landmark_list[5][1] > self.landmark_list[17][1]:
-								if self.landmark_list[self.tips_dips[finger][0]][1] < self.landmark_list[self.tips_dips[finger][1]][1]:
-									finger_open = True
-							else:
-								if self.landmark_list[self.tips_dips[finger][0]][1] > self.landmark_list[self.tips_dips[finger][1]][1]:
-									finger_open = True
-						elif self.landmark_list[self.tips_dips[finger][0]][2] < self.landmark_list[self.tips_dips[finger][1]][2]:
+						if self.landmark_list[point1][1] > self.landmark_list[point2][1]:
 							finger_open = True
+				elif self.landmark_list[point1][2] > self.landmark_list[point2][2]:
 
-			elif orientation == "Left" or orientation == "Right":
-				if orientation == "Left":
-					if finger == 0:
-						if self.landmark_list[5][2] < self.landmark_list[17][2]:
-							if self.landmark_list[self.tips_dips[finger][0]][2] > self.landmark_list[self.tips_dips[finger][1]][2]:
-								finger_open = True
-						else:
-							if self.landmark_list[self.tips_dips[finger][0]][2] < self.landmark_list[self.tips_dips[finger][1]][2]:
-								finger_open = True
-					elif self.landmark_list[self.tips_dips[finger][0]][1] > self.landmark_list[self.tips_dips[finger][1]][1]:
-						finger_open = True
-				else:
-					if finger == 0:
-						if self.landmark_list[5][2] < self.landmark_list[17][2]:
-							if self.landmark_list[self.tips_dips[finger][0]][2] > self.landmark_list[self.tips_dips[finger][1]][2]:
-								finger_open = True
-						else:
-							if self.landmark_list[self.tips_dips[finger][0]][2] < self.landmark_list[self.tips_dips[finger][1]][2]:
-								finger_open = True
-					elif self.landmark_list[self.tips_dips[finger][0]][1] < self.landmark_list[self.tips_dips[finger][1]][1]:
-						finger_open = True
+					finger_open = True
+			elif orientation == "Down":
+				if finger == 0:
+					if self.landmark_list[5][1] > self.landmark_list[17][1]:
+						if self.landmark_list[point1][1] < self.landmark_list[point2][1]:
+							finger_open = True
+					else:
+						if self.landmark_list[point1][1] > self.landmark_list[point2][1]:
+							finger_open = True
+				elif self.landmark_list[point1][2] < self.landmark_list[point2][2]:
+					finger_open = True
+
+			elif orientation == "Left":
+				if finger == 0:
+					if self.landmark_list[5][2] < self.landmark_list[17][2]:
+						if self.landmark_list[point1][2] > self.landmark_list[point2][2]:
+							finger_open = True
+					else:
+						if self.landmark_list[point1][2] < self.landmark_list[point2][2]:
+							finger_open = True
+				elif self.landmark_list[point1][1] > self.landmark_list[point2][1]:
+					finger_open = True
+			elif orientation == "Right":
+				if finger == 0:
+					if self.landmark_list[5][2] < self.landmark_list[17][2]:
+						if self.landmark_list[point1][2] > self.landmark_list[point2][2]:
+							finger_open = True
+					else:
+						if self.landmark_list[point1][2] < self.landmark_list[point2][2]:
+							finger_open = True
+				elif self.landmark_list[point1][1] < self.landmark_list[point2][1]:
+					finger_open = True
 		return finger_open
 
 
