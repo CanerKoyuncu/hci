@@ -10,7 +10,7 @@ class handDetector():
         self.detectionCon = detectionConf
         self.trackCon = trackConf
         self.complexity = complexity
-        self.mp_hands = mp.solutions.hands
+        self.mp_hands = mp.solutions.hands # We use mediapipe hands solution.
         self.hands= mp.solutions.hands.Hands(self.mode, self.maxHands,self.complexity, self.detectionCon, self.trackCon)
         self.draw = mp.solutions.drawing_utils
 
