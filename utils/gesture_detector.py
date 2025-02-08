@@ -225,7 +225,7 @@ class GestureDetector:
 					print("tab closed")
 
 		elif fingers == [0, 1, 1, 1, 1]:
-			# if thumb finger is open and other all fingers are open run voice listen function.
+			# if thumb finger is close and other all fingers are open run voice listen function.
 			self.interactor.voice_listen()
 
 		# mouse move gesture check
